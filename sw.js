@@ -52,11 +52,28 @@ Notification.requestPermission().then(permission => {
     }
 });
 
-// Enviar una notificación local
-navigator.serviceWorker.ready.then(registration => {
-    registration.showNotification('Kite: Tarea Próxima', {
-        body: 'Tu tarea "Informe de Matrices" vence hoy a las 11:59 PM',
-        icon: 'IMG/Icons/icon-192.png',
-        vibrate: [200, 100, 200]
-    });
-});
+// Función para programar notificación cuando el usuario guarda una tarea
+function programarNotificacionTarea(tarea) {
+    if (!tarea.fecha) return;
+
+    const fechaEntrega = new Date(tarea.fecha).getTime();
+    const ahora = new Date().getTime();
+    const tiempoRestante = fechaEntrega - ahora;
+
+    // Si la fecha es futura, programamos la alerta
+    if (tiempoRestante > 0) {
+        setTimeout(() => {
+            if (Notification.permission === 'granted' && navigator.serviceWorker.ready) {
+                navigator.serviceWorker.ready.then(registration => {
+                    const horaFormateada = new Date(tarea.fecha).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                
+                    registration.showNotification(`📌 Tarea próxima: ${tarea.titulo}`, {
+                        body: `Tu tarea del curso "${tarea.curso}" vence hoy a las ${horaFormateada}.`,
+                        icon: 'IMG/Icons/icon-192.png',
+                        vibrate: [200, 100, 200]
+                    });
+                });
+            }
+        }, tiempoRestante);
+    }
+}
