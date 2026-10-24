@@ -42,36 +42,38 @@
     <!-- Pantalla 2 : Creación de Tareas-->
     <section id="view-add-task" class="view hidden">
         <header class="top-bar-sub">
-        <button id="btn-back-task" class="btn-back">←</button>
-        <h2>Agregar Tarea</h2>
+            <button id="btn-back-task" class="btn-back">←</button>
+            <h2>Agregar Tarea</h2>
         </header>
-            <form id="form-task" class="form-container">
-                <input type="text" placeholder="Título de la tarea" required>
-                <select required>
-                    <option value="" disabled selected>Selecciona un curso</option>
-                </select>
-                <div class="type-selector">
-                    <button type="button" class="btn-toggle active">Individual</button>
-                    <button type="button" class="btn-toggle">Grupal</button>
-                </div>
-                <input type="datetime-local" required>
-                <textarea placeholder="Notas o enlaces útiles (Drive, Canva, etc.)"></textarea>
-                <label style="font-size: 13px; font-weight: 500; color: var(--text-secondary);">Adjuntar imagen/foto:</label>
-                <input type="file" id="task-img-input" accept="image/*">
-                <button type="submit" class="btn-primary">Guardar Tarea</button>
-            </form>
+        <form id="form-task" class="form-container">
+            <input type="text" id="task-title-input" placeholder="Título de la tarea" required>
+            <select id="task-course-select" required>
+                <option value="" disabled selected>Selecciona un curso</option>
+            </select>
+            <div class="type-selector">
+                <button type="button" class="btn-toggle active">Individual</button>
+                <button type="button" class="btn-toggle">Grupal</button>
+            </div>
+            <input type="datetime-local" id="task-date-input" required>
+            <textarea id="task-desc-input" placeholder="Notas o enlaces útiles (Drive, Canva, etc.)"></textarea>
+            
+            <label style="font-size: 13px; font-weight: 500; color: var(--text-secondary);">Adjuntar imagen/foto:</label>
+            <input type="file" id="task-img-input" accept="image/*">
+            
+            <button type="submit" class="btn-primary">Guardar Tarea</button>
+        </form>
     </section>
 
-        <!-- PANTALLA DE DETALLE DE TAREA -->
-        <section id="view-task-detail" class="view hidden">
-            <header class="top-bar-sub">
+    <!-- PANTALLA DE DETALLE DE TAREA -->
+    <section id="view-task-detail" class="view hidden">
+        <header class="top-bar-sub">
             <button id="btn-back-detail" class="btn-back">←</button>
             <h2>Detalle de Tarea</h2>
-            </header>
-            <div id="task-detail-content" class="form-container">
+        </header>
+        <div id="task-detail-content" class="form-container">
             <!-- El contenido con foto y descripción se cargará dinámicamente -->
-            </div>
-        </section>
+        </div>
+    </section>
     
     <!-- Pantalla 3 : Mis cursos y grupos-->
     <section id="view-courses" class="view hidden">
