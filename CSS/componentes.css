@@ -1,0 +1,120 @@
+/* Barra Superior y Buscador */
+.top-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.search-box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 8px 12px;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    width: 100%;
+    margin-left: 8px;
+    font-size: 14px;
+}
+
+.btn-icon-add {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Filtros Rápidos */
+.filter-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.filter-btn {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Tarjeta de Tarea (Como tu boceto) */
+.task-card {
+    display: flex;
+    align-items: center;
+    background-color: var(--card-bg);
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 12px;
+}
+
+.task-icon {
+    font-size: 24px;
+    margin-right: 12px;
+}
+
+.task-info {
+    flex: 1;
+}
+
+.task-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.task-course {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+.task-badges {
+    display: flex;
+    gap: 6px;
+}
+
+.badge {
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.badge-group {
+    background-color: var(--badge-group-bg);
+    color: var(--badge-group-text);
+}
+
+.badge-date {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.task-check {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
