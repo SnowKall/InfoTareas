@@ -118,3 +118,34 @@
     height: 20px;
     cursor: pointer;
 }
+
+/* Botón de eliminar (Cruz) en las tarjetas */
+.btn-delete-task {
+    background: none;
+    border: none;
+    color: #ef4444;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+}
+
+/* Vista de detalle de tarea */
+.detail-card {
+    background: var(--card-bg);
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.detail-img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
