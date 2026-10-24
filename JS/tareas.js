@@ -144,8 +144,26 @@ function verDetalleTarea(id) {
 
 // Eliminar tarea
 function eliminarTareaConConfirmacion(id) {
-    if (confirm('¿Estás seguro de que quieres eliminar esta tarea?')) {
+    const modal = document.getElementById('custom-modal');
+    const msg = document.getElementById('modal-message');
+    const btnConfirm = document.getElementById('modal-btn-confirm');
+    const btnCancel = document.getElementById('modal-btn-cancel');
+
+    msg.textContent = '¿Estás seguro de que quieres eliminar esta tarea?';
+    modal.classList.remove('hidden');
+
+    const onConfirm = () => {
         Almacen.eliminarTarea(id);
         renderizarTareas();
-    }
+        cerrarModal();
+    };
+
+    const cerrarModal = () => {
+        modal.classList.add('hidden');
+        btnConfirm.removeEventListener('click', onConfirm);
+        btnCancel.removeEventListener('click', cerrarModal);
+    };
+
+    btnConfirm.onclick = onConfirm;
+    btnCancel.onclick = cerrarModal;
 }

@@ -156,6 +156,18 @@
         </div>
     </section>
 
+    <!-- Modal de Confirmación Personalizado -->
+    <div id="custom-modal" class="hidden" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 16px;">
+        <div style="background: var(--card-bg); padding: 20px; border-radius: 16px; max-width: 320px; width: 100%; text-align: center; border: 1px solid var(--border-color);">
+            <h3 style="margin-bottom: 8px; color: var(--text-primary);">🪁 Kite</h3>
+            <p id="modal-message" style="font-size: 14px; color: var(--text-secondary); margin-bottom: 20px;">¿Estás seguro de realizar esta acción?</p>
+            <div style="display: flex; gap: 10px;">
+                <button id="modal-btn-cancel" class="filter-btn" style="flex: 1;">Cancelar</button>
+                <button id="modal-btn-confirm" class="btn-primary" style="flex: 1; background-color: #ef4444; margin: 0;">Eliminar</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Navegación Inferior fija -->
     <nav class="bottom-nav">
         <button class="nav-item active" data-view="view-tasks">

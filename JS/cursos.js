@@ -94,14 +94,31 @@ function renderizarCursos() {
 
 // Función para eliminar curso con confirmación
 function eliminarCursoConConfirmacion(id) {
-    if (confirm('¿Estás seguro de que quieres eliminar este curso?')) {
+    const modal = document.getElementById('custom-modal');
+    const msg = document.getElementById('modal-message');
+    const btnConfirm = document.getElementById('modal-btn-confirm');
+    const btnCancel = document.getElementById('modal-btn-cancel');
+
+    msg.textContent = '¿Estás seguro de que quieres eliminar este curso?';
+    modal.classList.remove('hidden');
+
+    const onConfirm = () => {
         let cursos = Almacen.obtenerCursos();
         cursos = cursos.filter(c => c.id !== id);
         localStorage.setItem('info_cursos', JSON.stringify(cursos));
-        
         renderizarCursos();
         actualizarSelectCursosFormTarea();
-    }
+        cerrarModal();
+    };
+
+    const cerrarModal = () => {
+        modal.classList.add('hidden');
+        btnConfirm.removeEventListener('click', onConfirm);
+        btnCancel.removeEventListener('click', cerrarModal);
+    };
+
+    btnConfirm.onclick = onConfirm;
+    btnCancel.onclick = cerrarModal;
 }
 
 // Llenar dinámicamente el selector de cursos al crear una tarea
