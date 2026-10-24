@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnNotify = document.getElementById('btn-enable-notifications');
     
     // Reemplaza esta comilla por tu VAPID_PUBLIC_KEY real
-    const PUBLIC_VAPID_KEY = 'TU_PUBLIC_VAPID_KEY_AQUI'; 
+    const PUBLIC_VAPID_KEY = 'BPL4QD7vyyUW0ZJBqO-jc-pxiqlrAzCEFTYjouXDAjJfo7VO9vugb5y7cMEeVdBUFMzRc99_0VNopTxWdPeIwfk'; 
 
     if (btnNotify) {
         btnNotify.addEventListener('click', async () => {
