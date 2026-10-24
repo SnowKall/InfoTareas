@@ -44,3 +44,19 @@ self.addEventListener('fetch', (e) => {
         })
     );
 });
+
+// Solicitar permiso
+Notification.requestPermission().then(permission => {
+    if (permission === 'granted') {
+        console.log('Permisos de notificación concedidos');
+    }
+});
+
+// Enviar una notificación local
+navigator.serviceWorker.ready.then(registration => {
+    registration.showNotification('Kite: Tarea Próxima', {
+        body: 'Tu tarea "Informe de Matrices" vence hoy a las 11:59 PM',
+        icon: 'IMG/Icons/icon-192.png',
+        vibrate: [200, 100, 200]
+    });
+});
