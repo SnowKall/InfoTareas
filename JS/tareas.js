@@ -84,13 +84,12 @@ function renderizarTareas() {
     const tareas = Almacen.obtenerTareas();
 
     if (tareas.length === 0) {
-        container.innerHTML = `<p style="text-align:center; color: var(--text-secondary); margin-top:30px;">No tienes tareas pendientes 🎉</p>`;
+        container.innerHTML = `<p style="text-align:center; color: var(--text-secondary); margin-top:30px;">No tienes tareas pendientes</p>`;
         return;
     }
 
     container.innerHTML = tareas.map(t => `
         <article class="task-card" style="cursor: pointer;">
-        <div class="task-icon">📐</div>
         <div class="task-info" onclick="verDetalleTarea(${t.id})">
             <h3 class="task-title">${t.titulo}</h3>
             <p class="task-course">${t.curso}</p>
