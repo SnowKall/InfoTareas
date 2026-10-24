@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const hasGroupSelect = document.getElementById('course-has-group');
     const groupFields = document.getElementById('group-fields');
 
-  // Mostrar / ocultar campos de grupo según la selección
+    // Mostrar / ocultar campos de grupo según la selección
     if (hasGroupSelect) {
         hasGroupSelect.addEventListener('change', (e) => {
-            if (e.target.value === 'si') {
+        if (e.target.value === 'si') {
             groupFields.classList.remove('hidden');
         } else {
             groupFields.classList.add('hidden');
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-  // Navegación a pantalla de agregar curso
+    // Navegación a pantalla de agregar curso
     if (btnAddCourse) {
         btnAddCourse.addEventListener('click', () => {
             document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
@@ -31,28 +31,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-  // Guardar nuevo curso
+    // Guardar nuevo curso
     if (formCourse) {
         formCourse.addEventListener('submit', (e) => {
-            e.preventDefault();
+        e.preventDefault();
 
-            const nuevoCurso = {
-                id: Date.now(),
-                nombre: document.getElementById('course-name').value,
-                profesor: document.getElementById('course-prof').value,
-                tieneGrupo: hasGroupSelect.value === 'si',
-                integrantes: document.getElementById('group-members').value,
-                link: document.getElementById('course-link').value
-            };
+        const nuevoCurso = {
+            id: Date.now(),
+            nombre: document.getElementById('course-name').value,
+            profesor: document.getElementById('course-prof').value,
+            tieneGrupo: hasGroupSelect.value === 'si',
+            integrantes: document.getElementById('group-members').value,
+            link: document.getElementById('course-link').value
+        };
 
-            Almacen.guardarCurso(nuevoCurso);
-            formCourse.reset();
-            groupFields.classList.add('hidden');
+        Almacen.guardarCurso(nuevoCurso);
+        formCourse.reset();
+        groupFields.classList.add('hidden');
 
-            // Volver a la lista de cursos
-            btnBackCourse.click();
-            renderizarCursos();
-            actualizarSelectCursosFormTarea();
+        // Volver a la lista de cursos
+        btnBackCourse.click();
+        renderizarCursos();
+        actualizarSelectCursosFormTarea();
         });
     }
 
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     actualizarSelectCursosFormTarea();
 });
 
-// Pintar la lista de cursos registrados
+// Pintar la lista de cursos con botón de eliminar
 function renderizarCursos() {
     const container = document.getElementById('courses-list');
     const cursos = Almacen.obtenerCursos();
@@ -73,10 +73,13 @@ function renderizarCursos() {
     }
 
     container.innerHTML = cursos.map(c => `
-        <article class="task-card" style="flex-direction: column; align-items: flex-start; gap: 6px;">
+        <article class="task-card" style="flex-direction: column; align-items: flex-start; gap: 6px; position: relative;">
             <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
                 <h3 class="task-title" style="font-size: 16px;">📚 ${c.nombre}</h3>
-                <span class="badge ${c.tieneGrupo ? 'badge-group' : 'badge-date'}">${c.tieneGrupo ? 'Grupal' : 'Individual'}</span>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span class="badge ${c.tieneGrupo ? 'badge-group' : 'badge-date'}">${c.tieneGrupo ? 'Grupal' : 'Individual'}</span>
+                    <button class="btn-delete-task" onclick="eliminarCursoConConfirmacion(${c.id})">✕</button>
+                </div>
             </div>
             ${c.profesor ? `<p class="task-course">Profe: ${c.profesor}</p>` : ''}
             ${c.tieneGrupo && c.integrantes ? `
@@ -86,8 +89,20 @@ function renderizarCursos() {
             ` : ''}
             ${c.link ? `<a href="${c.link}" target="_blank" style="font-size:12px; color: var(--primary-color); text-decoration: none; margin-top:4px;">🔗 Enlace de materiales / Drive</a>` : ''}
         </article>
-        `).join('');
+    `).join('');
+}
+
+// Función para eliminar curso con confirmación
+function eliminarCursoConConfirmacion(id) {
+    if (confirm('¿Estás seguro de que quieres eliminar este curso?')) {
+        let cursos = Almacen.obtenerCursos();
+        cursos = cursos.filter(c => c.id !== id);
+        localStorage.setItem('info_cursos', JSON.stringify(cursos));
+        
+        renderizarCursos();
+        actualizarSelectCursosFormTarea();
     }
+}
 
 // Llenar dinámicamente el selector de cursos al crear una tarea
 function actualizarSelectCursosFormTarea() {
