@@ -90,6 +90,48 @@
         </div>
     </section>
 
+    <!-- Pantalla 4 : Agregar curso-->
+    <section id="view-add-course" class="view hidden">
+        <header class="top-bar-sub">
+            <button id="btn-back-course" class="btn-back">←</button>
+        <h2>Agregar Curso</h2>
+        </header>
+        <form id="form-course" class="form-container">
+            <input type="text" id="course-name" placeholder="Nombre del curso (Ej. Algoritmos)" required>
+            <input type="text" id="course-prof" placeholder="Nombre del profesor">
+            
+            <div class="group-toggle-box">
+                <label style="font-size: 14px; font-weight: 500;">¿Es trabajo grupal en este curso?</label>
+                <select id="course-has-group">
+                    <option value="no">No (Individual)</option>
+                    <option value="si">Sí (Con grupo)</option>
+                </select>
+            </div>
+
+            <div id="group-fields" class="hidden">
+                <h4 style="margin-top:10px; font-size:14px; color: var(--primary-color);">Integrantes del Grupo</h4>
+                <textarea id="group-members" placeholder="Escribe los nombres y teléfonos de tu equipo (Ej. Juan: 987654321, Maria: Líder)"></textarea>
+            </div>
+
+            <input type="url" id="course-link" placeholder="Link de Drive / Aula Virtual (Opcional)">
+            <button type="submit" class="btn-primary">Guardar Curso</button>
+        </form>
+    </section>
+
+    <!-- Pantall 5 : Mi cuenta / Configuración-->
+    <section id="view-profile" class="view hidden">
+        <header class="top-bar-sub">
+            <h2>Mi Cuenta y Ajustes</h2>
+        </header>
+        <div class="profile-card" style="background: var(--card-bg); padding: 16px; border-radius: 12px; border: 1px solid var(--border-color);">
+            <h3>📱 Estado PWA</h3>
+            <p style="font-size: 13px; color: var(--text-secondary); margin: 8px 0;">
+                Puedes instalar esta app en tu pantalla de inicio desde las opciones de tu navegador.
+            </p>
+            <button id="btn-install-pwa" class="btn-primary" style="width: 100%; margin-top: 10px;">Instalar App</button>
+        </div>
+    </section>
+
     <!-- Navegación Inferior fija -->
     <nav class="bottom-nav">
         <button class="nav-item active" data-view="view-tasks">
