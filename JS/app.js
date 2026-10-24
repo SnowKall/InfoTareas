@@ -71,4 +71,34 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('kite_theme', theme);
         });
     }
+
+    const btnNotify = document.getElementById('btn-enable-notifications');
+
+    if (btnNotify) {
+        btnNotify.addEventListener('click', () => {
+            if (!('Notification' in window)) {
+                alert('Este navegador no soporta notificaciones.');
+            return;
+            }
+
+            Notification.requestPermission().then(permission => {
+                if (permission === 'granted') {
+                    alert('¡Notificaciones activadas con éxito!');
+                
+                    // Disparar notificación de prueba
+                    if (navigator.serviceWorker && navigator.serviceWorker.ready) {
+                        navigator.serviceWorker.ready.then(registration => {
+                            registration.showNotification('🪁 Kite', {
+                                body: '¡Las notificaciones están activadas correctamente!',
+                                icon: 'IMG/Icons/icon-192.png',
+                                vibrate: [200, 100, 200]
+                            });
+                        });
+                    }
+                } else {
+                    alert('Permiso de notificaciones denegado.');
+                }
+            });
+        });
+    }
 });
