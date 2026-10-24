@@ -192,3 +192,27 @@ function eliminarTareaConConfirmacion(id) {
     btnConfirm.onclick = onConfirm;
     btnCancel.onclick = cerrarModal;
 }
+
+// Función para enviar la notificación Push al backend de Vercel
+async function enviarNotificacionPush(tarea) {
+    const subData = localStorage.getItem('kite_push_subscription');
+    if (!subData) return; // Si el usuario no ha activado notificaciones, no hace nada
+
+    const subscription = JSON.parse(subData);
+    const horaFormateada = tarea.fecha ? tarea.fecha.split('T')[1] || 'todo el día' : 'todo el día';
+
+    try {
+        await fetch('/api/send-notification', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                subscription: subscription,
+                tareaTitulo: tarea.titulo,
+                cursoNombre: tarea.curso,
+                hora: horaFormateada
+            })
+        });
+    } catch (err) {
+        console.error('Error enviando notificación push:', err);
+    }
+}
