@@ -127,12 +127,23 @@
         <header class="top-bar-sub">
             <h2>Mi Cuenta y Ajustes</h2>
         </header>
-        <div class="profile-card" style="background: var(--card-bg); padding: 16px; border-radius: 12px; border: 1px solid var(--border-color);">
-            <h3>📱 Estado PWA</h3>
-            <p style="font-size: 13px; color: var(--text-secondary); margin: 8px 0;">
-                Puedes instalar esta app en tu pantalla de inicio desde las opciones de tu navegador.
-            </p>
-            <button id="btn-install-pwa" class="btn-primary" style="width: 100%; margin-top: 10px;">Instalar App</button>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+            <!-- Ajuste de Tema -->
+            <div class="profile-card" style="background: var(--card-bg); padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h3 style="font-size: 15px;">🌙 Apariencia</h3>
+                    <p style="font-size: 12px; color: var(--text-secondary);">Cambiar a modo oscuro / claro</p>
+                </div>
+                <button id="btn-toggle-theme" class="filter-btn" style="width: auto; padding: 8px 16px;">Oscuro</button>
+            </div>
+
+            <!-- Estado PWA -->
+            <div class="profile-card" style="background: var(--card-bg); padding: 16px; border-radius: 12px; border: 1px solid var(--border-color);">
+                <h3>📱 Estado PWA</h3>
+                <p style="font-size: 13px; color: var(--text-secondary); margin: 8px 0;">
+                    Puedes instalar Kite en tu pantalla de inicio desde las opciones de tu navegador.
+                </p>
+            </div>
         </div>
     </section>
 

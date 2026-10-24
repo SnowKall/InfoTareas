@@ -1,14 +1,26 @@
 :root {
+    /* Modo Claro (por defecto) */
     --bg-color: #f4f6f8;
     --card-bg: #ffffff;
     --text-primary: #1e293b;
     --text-secondary: #64748b;
     --primary-color: #4f46e5;
-    --primary-hover: #4338ca;
     --badge-group-bg: #e0e7ff;
     --badge-group-text: #3730a3;
     --border-color: #e2e8f0;
 }
+
+/* Modo Oscuro */
+body.dark-theme {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --primary-color: #6366f1;
+    --badge-group-bg: #312e81;
+    --badge-group-text: #c7d2fe;
+    --border-color: #334155;
+    }
 
 * {
     box-sizing: border-box;
@@ -24,6 +36,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     padding-bottom: 70px; /* Espacio para la barra inferior fija */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .view {

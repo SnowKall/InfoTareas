@@ -44,3 +44,31 @@ if ('serviceWorker' in navigator) {
             .catch(err => console.error('Error al registrar Service Worker', err));
     });
 }
+
+// Manejo de Modo Oscuro / Claro
+document.addEventListener('DOMContentLoaded', () => {
+    const btnToggleTheme = document.getElementById('btn-toggle-theme');
+    const currentTheme = localStorage.getItem('kite_theme');
+
+    // Aplicar tema guardado previamente
+    if (currentTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+        if (btnToggleTheme) btnToggleTheme.textContent = 'Claro ☀️';
+    }
+
+    if (btnToggleTheme) {
+        btnToggleTheme.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            
+            let theme = 'light';
+            if (document.body.classList.contains('dark-theme')) {
+                theme = 'dark';
+                btnToggleTheme.textContent = 'Claro ☀️';
+            } else {
+                btnToggleTheme.textContent = 'Oscuro 🌙';
+            }
+
+            localStorage.setItem('kite_theme', theme);
+        });
+    }
+});
