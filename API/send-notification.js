@@ -7,15 +7,15 @@ export default async function handler(req, res) {
 
         // Configuración de llaves VAPID para notificaciones Push
         webpush.setVapidDetails(
-            'mailto:tu-correo@ejemplo.com',
-            process.env.PUBLIC_VAPID_KEY,
+            process.env.MY_EMAIL,
+            process.env.VAPID_PUBLIC_KEY,
             process.env.PRIVATE_VAPID_KEY
         );
 
         const payload = JSON.stringify({
             title: `📌 Recordatorio: ${tareaTitulo}`,
             body: `La tarea del curso ${cursoNombre} vence a las ${hora}.`,
-            icon: '/IMG/Icons/AllMightIcon192.png.png'
+            icon: '/IMG/Icons/AllMightIcon192.png'
         });
 
         try {
