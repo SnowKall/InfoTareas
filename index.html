@@ -15,6 +15,43 @@
     <meta name="theme-color" content="#000000">
 </head>
 <body>
-    
+
+    <!-- Pantalla Principal / Vista de Tareas-->
+    <section id="view-tasks" class="view active">
+        <!-- Barra Superior: Buscador y Botón Agregar -->
+        <header class="top-bar">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="search-input" placeholder="Buscar tarea o curso...">
+            </div>
+            <button id="btn-add-task" class="btn-icon-add">+</button>
+        </header>
+
+        <!-- Filtros Rápidos -->
+            <div class="filter-tabs">
+                <button class="filter-btn active" data-filter="all">Todas</button>
+                <button class="filter-btn" data-filter="today">Hoy</button>
+                <button class="filter-btn" data-filter="week">Esta semana</button>
+            </div>
+
+        <!-- Lista de Tareas (Tarjetas) -->
+        <main class="tasks-container" id="tasks-list">
+            <!-- Ejemplo de tarjeta como la dibujaste -->
+            <article class="task-card">
+                <div class="task-icon">📐</div>
+                <div class="task-info">
+                <h3 class="task-title">Informe de Matrices</h3>
+                <p class="task-course">Matemática Discreta</p>
+                <div class="task-badges">
+                    <span class="badge badge-group">Grupal</span>
+                    <span class="badge badge-date">Mañana, 11:59 PM</span>
+                </div>
+                </div>
+                <div class="task-action">
+                <input type="checkbox" class="task-check">
+                </div>
+            </article>
+        </main>
+    </section>
 </body>
 </html>
