@@ -9,9 +9,7 @@ const ASSETS_TO_CACHE = [
     './JS/app.js',
     './JS/almacen.js',
     './JS/tareas.js',
-    './JS/cursos.js',
-    './IMG/Icons',
-    './IMG/PlaceHolders'
+    './JS/cursos.js'
 ];
 
 // Instalación del Service Worker
