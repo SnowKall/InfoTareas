@@ -1,0 +1,22 @@
+{
+    "name": "InfoTareas - Organizador Académico",
+    "short_name": "InfoTareas",
+    "description": "Organiza tus tareas, cursos y grupos universitarios.",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#f4f6f8",
+    "theme_color": "#4f46e5",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "IMG/Icons/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "IMG/Icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
