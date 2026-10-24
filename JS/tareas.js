@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             Almacen.guardarTarea(nuevaTarea);
+            enviarNotificacionPush(nuevaTarea); // Dispara la notificación al backend
             formTask.reset();
 
             // Volver a selección individual por defecto
@@ -69,6 +70,30 @@ document.addEventListener('DOMContentLoaded', () => {
             reader.readAsDataURL(file);
         } else {
             guardar();
+        }
+
+        // Función para enviar notificación a través del backend
+        async function enviarNotificacionPush(tarea) {
+            const subData = localStorage.getItem('kite_push_subscription');
+            if (!subData) return; // Si no ha activado notificaciones, no hace nada
+
+            const subscription = JSON.parse(subData);
+            const horaFormateada = tarea.fecha ? tarea.fecha.split('T')[1] || 'todo el día' : 'todo el día';
+
+            try {
+                await fetch('/api/send-notification', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        subscription: subscription,
+                        tareaTitulo: tarea.titulo,
+                        cursoNombre: tarea.curso,
+                        hora: horaFormateada
+                    })
+                });
+            } catch (err) {
+                console.error('Error enviando push al servidor:', err);
+            }
         }
         });
     }

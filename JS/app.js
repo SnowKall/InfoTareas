@@ -102,3 +102,57 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// 1. Helper para convertir la llave VAPID
+function urlBase64ToUint8Array(base64String) {
+    const padding = '='.repeat((4 - base64String.length % 4) % 4);
+    const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+    const rawData = window.atob(base64);
+    const outputArray = new Uint8Array(rawData.length);
+    for (let i = 0; i < rawData.length; ++i) {
+        outputArray[i] = rawData.charCodeAt(i);
+    }
+    return outputArray;
+}
+
+// 2. Evento del botón de notificaciones
+document.addEventListener('DOMContentLoaded', () => {
+    const btnNotify = document.getElementById('btn-enable-notifications');
+    
+    // Reemplaza esta comilla por tu VAPID_PUBLIC_KEY real
+    const PUBLIC_VAPID_KEY = 'TU_PUBLIC_VAPID_KEY_AQUI'; 
+
+    if (btnNotify) {
+        btnNotify.addEventListener('click', async () => {
+            if (!('Notification' in window) || !('serviceWorker' in navigator)) {
+                alert('Este navegador no soporta notificaciones push.');
+                return;
+            }
+
+            const permission = await Notification.requestPermission();
+            if (permission !== 'granted') {
+                alert('Permiso de notificaciones denegado.');
+                return;
+            }
+
+            try {
+                const reg = await navigator.serviceWorker.ready;
+                let subscription = await reg.pushManager.getSubscription();
+
+                if (!subscription) {
+                    subscription = await reg.pushManager.subscribe({
+                        userVisibleOnly: true,
+                        applicationServerKey: urlBase64ToUint8Array(PUBLIC_VAPID_KEY)
+                    });
+                }
+
+                // Guardar la suscripción en el navegador
+                localStorage.setItem('kite_push_subscription', JSON.stringify(subscription));
+                alert('¡Notificaciones activadas con éxito en Kite!');
+            } catch (err) {
+                console.error('Error al suscribir a notificaciones:', err);
+                alert('Hubo un error al activar las notificaciones.');
+            }
+        });
+    }
+});
