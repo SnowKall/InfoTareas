@@ -53,5 +53,28 @@
             </article>
         </main>
     </section>
+
+    <!-- Pantalla 2 : Creación de Tareas (Oculta x defecto)-->
+    <section id="view-add-task" class="view hidden">
+        <header class="top-bar-sub">
+        <button id="btn-back-task" class="btn-back">←</button>
+        <h2>Agregar Tarea</h2>
+        </header>
+            <form id="form-task" class="form-container">
+                <input type="text" placeholder="Título de la tarea" required>
+                <select required>
+                    <option value="" disabled selected>Selecciona un curso</option>
+                </select>
+                <div class="type-selector">
+                    <button type="button" class="btn-toggle active">Individual</button>
+                    <button type="button" class="btn-toggle">Grupal</button>
+                </div>
+                <input type="datetime-local" required>
+                <textarea placeholder="Notas o enlaces útiles (Drive, Canva, etc.)"></textarea>
+                <button type="submit" class="btn-primary">Guardar Tarea</button>
+            </form>
+    </section>
+
+    
 </body>
 </html>
